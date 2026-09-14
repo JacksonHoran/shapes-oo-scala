@@ -23,12 +23,20 @@ class TestBoundingBox:
   def testSimpleLocation(): Unit =
     testBoundingBox(simpleLocation, 70, 30, 80, 120)
 
-  // TODO reenable these commented-out tests after adding the missing case classes
-  // (following the pattern of the other tests above)
+  @Test
+  def testSimpleEllipse(): Unit =
+    testBoundingBox(simpleEllipse, -50, -30, 100, 60)
 
-  //  testBoundingBox(simpleEllipse, -50, -30, 100, 60)
-  //  testBoundingBox(basicGroup, -50, -30, 100, 70)
-  //  testBoundingBox(simpleGroup, 150, 70, 350, 280)
-  //  testBoundingBox(complexGroup, 30, 60, 470, 320)
+  @Test
+  def testBasicGroup(): Unit =
+    testBoundingBox(basicGroup, -50, -30, 100, 70)
+
+  @Test
+  def testSimpleGroup(): Unit =
+    testBoundingBox(simpleGroup, 150, 70, 350, 280)
+
+  @Test
+  def testComplexGroup(): Unit =
+    testBoundingBox(complexGroup, 30, 60, 470, 320)
 
 end TestBoundingBox
