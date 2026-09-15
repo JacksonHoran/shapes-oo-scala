@@ -8,3 +8,7 @@ libraryDependencies ++= Seq(
   "org.slf4j"            %  "slf4j-simple"      % "1.7.30",
   "com.github.sbt.junit" %  "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test
 )
+
+// Doodle's offline (BufferedImage) rendering uses Java2D; run tests headless.
+Test / fork := true
+Test / javaOptions += "-Djava.awt.headless=true"
