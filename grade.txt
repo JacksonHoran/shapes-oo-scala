@@ -1,0 +1,74 @@
+Project 1a - Detailed evaluation
+GitHub ID: JacksonHoran
+Repository: JacksonHoran--shapes-oo-scala
+Commit evaluated: be555a57010bb1ec71919357de7a3d3cf5fe37f5
+Evaluation date: 2026-09-16
+FINAL GRADE: 8.3 points (6.0 required points; up to 3.0 extra credit)
+
+Build and test verification
+Command: sbt -batch -Dsbt.supershell=false test; exit code 0.
+Environment: sbt.version=1.13.0; Eclipse Adoptium Java 25.0.4.
+Compilation and test execution verified: 37 tests, 37 passed, 0 failed, 0 errors.
+The test command was run on the submitted sources, without repairing student code.
+  TestBoundingBox: 6 tests, 0 failures, 0 errors
+  TestDraw: 6 tests, 0 failures, 0 errors
+  TestHeight: 6 tests, 0 failures, 0 errors
+  TestScale: 7 tests, 0 failures, 0 errors
+  TestSize: 6 tests, 0 failures, 0 errors
+  TestValidation: 6 tests, 0 failures, 0 errors
+Full log: ../.grading/logs/JacksonHoran--shapes-oo-scala.log
+Separate instructor probes: ../.grading/logs/JacksonHoran--shapes-oo-scala.probe.log (sources kept outside this repository).
+
+Required rubric
+1. Missing shape cases: 0.5/0.5
+   Ellipse and variadic Group cases are added and integrate with the supplied model.
+   Evidence: src/main/scala/shapes.scala:4
+2. boundingBox: 1.0/1.0
+   Recursive rectangle, ellipse, location-offset, and group-union cases give the expected supplied bounding boxes.
+   Evidence: src/main/scala/boundingBox.scala:5
+3. Constructor validation with tests: 0.5/0.5
+   Enum initialization rejects negative dimensions, with six passing validation tests.
+   Evidence: src/main/scala/shapes.scala:12, src/test/scala/TestValidation.scala:4
+4. size: 0.5/0.5
+   Counts rectangle/ellipse leaves as one, unwraps Location, and sums Group children recursively.
+   Evidence: src/main/scala/size.scala:6
+5. height: 0.5/0.5
+   Computes longest shape-tree path, including both Location and Group nodes.
+   Evidence: src/main/scala/height.scala:6
+6. scale: 0.5/0.5
+   Recursively scales leaf dimensions, location coordinates, and all group members.
+   Evidence: src/main/scala/scale.scala:6
+7. Collection operations: 0.5/0.5
+   Uses immutable collection mapping/folding and minimum/maximum aggregation in boundingBox, with sum where appropriate.
+   Evidence: src/main/scala/boundingBox.scala:5
+8. TestSize: 0.5/0.5
+   At least six runnable assertions/tests cover the supplied leaf, location, and group fixtures with correct leaf-count expectations.
+   Evidence: src/test/scala/TestSize.scala:8
+9. TestHeight: 0.5/0.5
+   At least six runnable tests cover the supplied fixtures with correct tree-height expectations.
+   Evidence: src/test/scala/TestHeight.scala:8
+10. TestScale: 0.5/0.5
+   At least six runnable tests exercise recursive scaling and location offsets using the supplied fixtures.
+   Evidence: src/test/scala/TestScale.scala:9
+11. Configurable library logging: 0.5/0.5
+   Logging-library debug calls and a configurable backend are integrated.
+   Evidence: src/main/scala/draw.scala:27, src/main/scala/height.scala:9, src/main/scala/scale.scala:9
+
+Required subtotal: 6.0/6.0
+
+Deductions
+Skeleton incompatibility: -0.0. No substantive incompatible changes to the supplied skeleton found.
+AI record: -0.2. README.md contains a detailed AI interaction record, outside doc.
+
+Extra credit
+draw behavior: +1.5/2.0. draw.scala renders all node types, including a spline ellipse with correct radii. Rectangles use Doodle's centered origin rather than the required corner origin; mixed-group geometry therefore differs from boundingBox.
+Offline BufferedImage tests: +1.0/1.0. Six passing TestDraw cases render to BufferedImage and check dimensions plus nonuniform pixel content for all supplied fixtures. More precise geometry assertions would further strengthen the tests.
+
+Calculation: 6.0 - 0.2 + 2.5 = 8.3.
+Final grade: 8.3
+
+General evaluation
+The required work is complete and well tested. The drawing extension renders offline and checks painted content, but its centered rectangles are inconsistent with the bounding-box model. Fix that placement and move the disclosure into doc.
+
+Grading conventions
+Partial rubric credit uses 0.2 increments (0.2/0.4, or full 0.5); extra credit uses 0.5 increments. Tests are assessed individually when compilation and execution succeed. Passing tests do not earn credit for incorrect expectations or missing required coverage. Compatible refactoring is not penalized. Substantive AI summaries/prompt lists are accepted; outside-doc placement costs 0.2, and a missing record costs 1.0 instead. Either consistent edge-count or node-count tree height is accepted. Positive-only versus nonnegative dimension policies, integer scale factors, and unspecified empty-group edge behavior are not independently penalized. Extra credit is added without capping at 6.0.
